@@ -16,6 +16,8 @@ import br.com.marcorp.projetofinal.model.Usuario;
  */
 
 public interface UsuarioDAO extends CrudRepository<Usuario, Integer> {
+	public Usuario findByEmailAndSenha(String email, String senha);
+	public Usuario findByEmail(String email);
 	
 	
 }

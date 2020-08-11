@@ -5,7 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity                                                       // indica que Usuario é uma entidade armazenável no banco
 @Table(name="tbl_usuario")                                    // vou associar esta classe à tabela de nome "tbl_usuario"
@@ -30,6 +33,11 @@ public class Usuario {
 	
 	@Column(name="funcional", unique=true)
 	private int    funcional;
+	
+	
+	@ManyToOne
+	@JsonIgnoreProperties("listaUsers") // ignoro o atributo "listaUsers" do departamento
+	private Departamento depto;
 	
 	
 	public int getId() {
@@ -67,6 +75,19 @@ public class Usuario {
 	}
 	public void setFuncional(int funcional) {
 		this.funcional = funcional;
+	}
+	
+	public Departamento getDepto() {
+		return depto;
+	}
+	public void setDepto(Departamento depto) {
+		this.depto = depto;
+	}
+	
+	@Override
+	public String toString() {
+		return "Usuario [id=" + id + ", nome=" + nome + ", email=" + email + ", senha=" + senha + ", racf=" + racf
+				+ ", funcional=" + funcional + "]";
 	}
 	
 }
