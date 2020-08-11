@@ -41,7 +41,7 @@ public class Agendamento {
 	
 	@Column(name="hora_agendamento")
 	@Temporal(TemporalType.TIME)
-	@JsonFormat(pattern="HH:mm", shape=JsonFormat.Shape.STRING)
+	@JsonFormat(pattern="HH:mm", shape=JsonFormat.Shape.STRING, timezone="America/Sao_Paulo")
 	private Date horaAgendamento;
 	
 	@Column(name="observacao", length=255)
