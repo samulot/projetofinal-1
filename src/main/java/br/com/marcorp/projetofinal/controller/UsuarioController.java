@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +15,7 @@ import br.com.marcorp.projetofinal.dao.UsuarioDAO;
 import br.com.marcorp.projetofinal.model.Usuario;
 
 @RestController
+@CrossOrigin ("*")
 public class UsuarioController {
 	
 	/* injecao de dependência
@@ -72,6 +74,7 @@ public class UsuarioController {
 		if (resultado != null) { 
 			// as senhas (do banco e enviadas no formulário) conferem?
 			if (resultado.getSenha().equals(dadosLogin.getSenha())) {
+				resultado.setSenha("************");
 				return ResponseEntity.ok(resultado);
 			}
 			else {
