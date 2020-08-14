@@ -1,7 +1,7 @@
 package br.com.marcorp.projetofinal.model;
 
-import java.util.Date;
-
+import java.time.LocalDate;
+import java.time.LocalTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,9 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -35,14 +32,12 @@ public class Agendamento {
 	private String celularCliente;
 	
 	@Column(name="data_agendamento")
-	@Temporal(TemporalType.DATE)
-	@JsonFormat(pattern="dd/MM/yyyy", shape=JsonFormat.Shape.STRING)
-	private Date dataAgendamento;
+	@JsonFormat(pattern="dd/MM/yyyy")
+	private LocalDate dataAgendamento;
 	
 	@Column(name="hora_agendamento")
-	@Temporal(TemporalType.TIME)
-	@JsonFormat(pattern="HH:mm", shape=JsonFormat.Shape.STRING, timezone="America/Sao_Paulo")
-	private Date horaAgendamento;
+	@JsonFormat(pattern="HH:mm", shape=JsonFormat.Shape.STRING)
+	private LocalTime horaAgendamento;
 	
 	@Column(name="observacao", length=255)
 	private String observacoes;
@@ -51,7 +46,6 @@ public class Agendamento {
 	@JoinColumn(name="id_agencia")      // aqui eu "forço" o nome do campo de junção
 	@JsonIgnoreProperties ("listaAgendamentos")
 	private Agencia agencia;
-	
 
 	public int getNum_seq() {
 		return num_seq;
@@ -85,19 +79,19 @@ public class Agendamento {
 		this.celularCliente = celularCliente;
 	}
 
-	public Date getDataAgendamento() {
+	public LocalDate getDataAgendamento() {
 		return dataAgendamento;
 	}
 
-	public void setDataAgendamento(Date dataAgendamento) {
+	public void setDataAgendamento(LocalDate dataAgendamento) {
 		this.dataAgendamento = dataAgendamento;
 	}
 
-	public Date getHoraAgendamento() {
+	public LocalTime getHoraAgendamento() {
 		return horaAgendamento;
 	}
 
-	public void setHoraAgendamento(Date horaAgendamento) {
+	public void setHoraAgendamento(LocalTime horaAgendamento) {
 		this.horaAgendamento = horaAgendamento;
 	}
 
@@ -116,7 +110,5 @@ public class Agendamento {
 	public void setAgencia(Agencia agencia) {
 		this.agencia = agencia;
 	}
-	
-	
 		
 }
